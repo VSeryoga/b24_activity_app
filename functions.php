@@ -38,6 +38,6 @@ function writeToLog($data, $title = '') {
     $log .= (strlen($title) > 0 ? $title : 'DEBUG') . "\n";
     $log .= print_r($data, 1);
     $log .= "\n------------------------\n";
-    file_put_contents('/home/bitrix/ext_www/app.optimab24.ru.com/logs/log_'.date('dmY').'.log', $log, FILE_APPEND);
+    file_put_contents('/var/www/newtroick.ru/b24/app.optimab24.ru.com/logs/log_'.date('dmY').'.log', $log, FILE_APPEND);
     return true;
 }

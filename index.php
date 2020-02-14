@@ -123,7 +123,7 @@
 		getTypeEntity();
 		
 		$('.install').click(function(event) {
-			var code = $(this).attr('data-code')
+			var code = $(this).attr('data-code');
 			installActivity(code);
 		});
 		$('.delete').click(function(event) {
@@ -158,7 +158,7 @@
 	});
 var actionInstall = {};
 var typeEntity = {};
-var handler = 'https://app.optimab24.ru.com/api.php';
+var handler = 'https://newtroick.ru/b24/app.optimab24.ru.com/api.php';
 var paramsActivity = {};
 paramsActivity.optima_task_delete = {
 	'CODE':'optima_task_delete', //уникальный в рамках приложения код
@@ -177,7 +177,7 @@ paramsActivity.optima_task_delete = {
 	},
 	'RETURN_PROPERTIES':{ 
 	}
-}
+};
 paramsActivity.optima_task_complete = {
 	'CODE':'optima_task_complete', //уникальный в рамках приложения код
 	'HANDLER': handler,
@@ -194,7 +194,7 @@ paramsActivity.optima_task_complete = {
 		},
 	},
 	'RETURN_PROPERTIES':{}
-}
+};
 paramsActivity.optima_bizproc_stop = {
 	'CODE':'optima_bizproc_stop', //уникальный в рамках приложения код
 	'HANDLER': handler,
@@ -211,7 +211,7 @@ paramsActivity.optima_bizproc_stop = {
 		},
 	},
 	'RETURN_PROPERTIES':{}
-}
+};
 paramsActivity.optima_bizproc_id = {
 	'CODE':'optima_bizproc_id', //уникальный в рамках приложения код
 	'HANDLER': handler,
@@ -227,7 +227,7 @@ paramsActivity.optima_bizproc_id = {
 			'Multiple':'N',
 		},
 	}
-}
+};
 paramsActivity.optima_activity_list = {
 	'CODE':'optima_activity_list', //уникальный в рамках приложения код
 	'HANDLER': handler,
@@ -258,7 +258,82 @@ paramsActivity.optima_activity_list = {
 			'Multiple':'N',
 		},
 	}
-}
+};
+
+paramsActivity.optima_products_entity = {
+	'CODE':'optima_products_entity', //уникальный в рамках приложения код
+	'HANDLER': handler,
+	'AUTH_USER_ID':1,
+	'USE_SUBSCRIPTION':'Y', //Y - если бизнесс-процесс должен ждать ответа приложения, N - если не должен ждать
+	'NAME':'Получить список товаров сущности',
+	'DESCRIPTION':'',
+	'PROPERTIES':{ //Входные данные для активити
+		'ID':{
+			'Name':'ID сущности',
+			'Type':'integer',
+			'Required':'Y',
+			'Multiple':'N',
+		},
+		'TYPE_ID':{
+			'Name':'Тип сущности',
+			'Type':'select',
+			'Required':'Y',
+			'Multiple':'N',
+			'Options': {
+				'L': 'Лид',
+				'D': 'Сделка'
+			}
+		},
+		'FIELD_QUANTITY':{
+			'Name':'Получить кол-во',
+			'Type':'bool',
+			'Required':'N',
+			'Multiple':'N',
+			'Default': 'N'
+		},
+		'FIELD_PRICE':{
+			'Name':'Получить цену',
+			'Type':'bool',
+			'Required':'N',
+			'Multiple':'N',
+			'Default': 'N'
+		},
+		'FIELD_SUM_PRICE':{
+			'Name':'Получить сумму',
+			'Type':'bool',
+			'Required':'N',
+			'Multiple':'N',
+			'Default': 'N'
+		},
+		'FIELD_TOTAL':{
+			'Name':'Получить "Итого"',
+			'Type':'bool',
+			'Required':'N',
+			'Multiple':'N',
+			'Default': 'N'
+		},
+		'TYPE_RESULT':{
+			'Name':'Тип ответа',
+			'Type':'select',
+			'Required':'Y',
+			'Multiple':'N',
+			'Options': {
+				'LIST': 'Список',
+				'TABLE': 'Таблица',
+				'JSON': 'Json'
+			},
+			'Default': 'LIST'
+		},
+	},
+	'RETURN_PROPERTIES':{
+		'PRODUCTS':{
+			'Name':'Товары',
+			'Type':'string',
+			'Required':'N',
+			'Multiple':'N',
+		},
+	}
+};
 
 </script>
 	<div id="not_admin">
@@ -317,6 +392,14 @@ paramsActivity.optima_activity_list = {
 			<td>
 				<button class='install btn btn-success btn-sm' data-code="optima_activity_list">Установить</button>
 				<button class='delete btn btn-danger btn-sm' data-code="optima_activity_list">Удалить</button>
+			</td>
+		</tr>
+		<tr>
+			<td>Список товаров сущности</td>
+			<td>Активити позволяет получить список товаров сущности</td>
+			<td>
+				<button class='install btn btn-success btn-sm' data-code="optima_products_entity">Установить</button>
+				<button class='delete btn btn-danger btn-sm' data-code="optima_products_entity">Удалить</button>
 			</td>
 		</tr>
 	</table>
